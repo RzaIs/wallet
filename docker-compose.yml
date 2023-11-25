@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+
+  db-wallet:
+    container_name: db-wallet
+    image: postgres
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'pass'
+      POSTGRES_DB: 'wallet'
+    ports:
+      - '5432:5432'
+
+  queue-wallet:
+    container_name: queue-wallet
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
